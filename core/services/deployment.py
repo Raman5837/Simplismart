@@ -94,8 +94,9 @@ class DeploymentService:
             )
         else:
             # Add deployment to Redis queue if resources are insufficient
+            # NOTE:- -ve value, since higher priority deployments should be scheduled first.
             self.__redis_client.z_add(
-                "DEPLOYMENT_QUEUE", {new_deployment.id: new_deployment.priority}
+                "DEPLOYMENT_QUEUE", {new_deployment.id: -new_deployment.priority}
             )
 
         return new_deployment
