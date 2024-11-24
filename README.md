@@ -62,15 +62,25 @@ You can copy the sample content and adjust it according to your environment.
 
 #### Option 1:
 
-1. **Setup and Activate the Virtual Environment**
+- _Setup and Activate the Virtual Environment_
 
-2. **Install Dependencies** using `python -m pip install -r requirements.txt`
+- Install Dependencies `python -m pip install -r requirements.txt`
 
-3. **Run Migrations** using `python manage.py migrate`
+- Create Migrations `python manage.py makemigrations`
 
-4. **Run the Development Server** using `python manage.py runserver`
+- Run Migrations `python manage.py migrate`
 
-   The server will be accessible at http://127.0.0.1:8000/
+- Run API Server `python manage.py runserver`
+
+- Run Redis Server `redis-server`
+
+- Run Celery Worker `python -m celery -A hypervisor worker --loglevel=info`
+
+- Run Celery Beat Worker ` python -m celery -A hypervisor beat --loglevel=info`
+
+- Run Test Cases `python manage.py test`
+
+  - Note:- Redis connection is required to run few test cases
 
 #### Option 2:
 

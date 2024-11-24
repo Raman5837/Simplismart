@@ -45,7 +45,7 @@ class DeploymentService:
         )
 
     @transaction.atomic
-    def create(self, payload: NewDeploymentRequestEntity) -> Cluster:
+    def create(self, payload: NewDeploymentRequestEntity) -> Deployment:
         """
         Creates new `Deployment` state
         """

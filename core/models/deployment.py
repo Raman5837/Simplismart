@@ -10,7 +10,7 @@ class Deployment(AbstractModel):
     Stores deployment metadata.
     """
 
-    priority = models.IntegerField()  # Higher priority has higher value
+    priority = models.IntegerField()  # Lower no. means higher priority
     cpu_required = models.PositiveIntegerField()
     ram_required = models.PositiveIntegerField()
     gpu_required = models.PositiveIntegerField()
