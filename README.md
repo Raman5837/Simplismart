@@ -76,22 +76,22 @@ You can copy the sample content and adjust it according to your environment.
 
 1. **Build the Docker Containers:**
 
-First, you need to build the Docker images for the application using
-`docker-compose build`
+   First, you need to build the Docker images for the application using
+   `docker-compose build`
 
 2. **Run the Docker Containers**
 
-Once the images are built, start the containers using `docker-compose up`
+   Once the images are built, start the containers using `docker-compose up`
 
-This will start all the services, including:
+   This will start all the services, including:
 
-**API server (Django)**
+   - **API server (Django)**
 
-**Redis (for celery and caching)**
+   - **Redis (for celery and caching)**
 
-**Celery Beat (for scheduled tasks)**
+   - **Celery Beat (for scheduled tasks)**
 
-**Celery worker (for background task processing)**
+   - **Celery worker (for background task processing)**
 
 **Access Logs**:
 
