@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # API Server 
+  server:
+    build: .
+    command: ["gunicorn", "hypervisor.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "4"]
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    env_file:
+      - .env
+
+  # Celery Worker
+  celery-worker:
+    build: .
+    command: ["python", "-m", "celery", "-A", "hypervisor", "worker", "--loglevel=info"]
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    env_file:
+      - .env
+
+  # Celery Beat (Scheduler)
+  celery-beat:
+    build: .
+    command: ["python", "-m", "celery", "-A", "hypervisor", "beat", "--loglevel=info"]
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    env_file:
+      - .env
+
+  # Redis
+  redis:
+    image: "redis:6"
+    ports:
+      - "6379:6379"
+
+# Volumes
+volumes:
+  sqlite_db:
+    driver: local
