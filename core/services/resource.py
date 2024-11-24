@@ -30,9 +30,7 @@ class ResourceAllocationService:
         try:
             deployment = Deployment.objects.get(id=payload.deployment_id)
         except Deployment.DoesNotExist as exception:
-            raise ResourceDoesNotExistsError(
-                "Deployment does not exists"
-            ) from exception
+            raise ResourceDoesNotExistsError("Deployment does not exists") from exception
 
         return ResourceAllocation.objects.create(
             cluster=cluster,
@@ -57,9 +55,7 @@ class ResourceAllocationService:
         try:
             return ResourceAllocation.objects.get(id=allocation_id)
         except Exception as exception:
-            raise ResourceDoesNotExistsError(
-                "ResourceAllocation does not exists"
-            ) from exception
+            raise ResourceDoesNotExistsError("ResourceAllocation does not exists") from exception
 
     @transaction.atomic
     def release_resources(self, deployment_id: str) -> None:
@@ -78,18 +74,12 @@ class ResourceAllocationService:
             cluster.ram += allocation.ram_allocated
             cluster.save()
 
-            logger.info(
-                f"[ResourceAllocationService]: Released resources for {deployment}"
-            )
+            logger.info(f"[ResourceAllocationService]: Released resources for {deployment}")
             allocation.delete()
 
         except ResourceAllocation.DoesNotExist as exception:
-            logger.exception(
-                f"[ResourceAllocationService]: Resource allocation for {deployment_id} does not exist."
-            )
-            raise ResourceDoesNotExistsError(
-                "Resource allocation does not exist."
-            ) from exception
+            logger.exception(f"[ResourceAllocationService]: Resource allocation for {deployment_id} does not exist.")
+            raise ResourceDoesNotExistsError("Resource allocation does not exist.") from exception
 
         except Exception as exception:
             logger.exception(f"[ResourceAllocationService]: {exception}")

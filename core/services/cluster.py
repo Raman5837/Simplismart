@@ -21,9 +21,7 @@ class ClusterService:
         try:
             organization = Organization.objects.get(id=payload.organization_id)
         except Organization.DoesNotExist as exception:
-            raise ResourceDoesNotExistsError(
-                "Organization does not exists"
-            ) from exception
+            raise ResourceDoesNotExistsError("Organization does not exists") from exception
 
         return Cluster.objects.create(
             cpu=payload.cpu,

@@ -23,14 +23,10 @@ class MembershipService:
                 code=payload.invite_code, is_active=True
             )
         except InviteCode.DoesNotExist as exception:
-            raise ResourceDoesNotExistsError(
-                "Invite Code does not exists"
-            ) from exception
+            raise ResourceDoesNotExistsError("Invite Code does not exists") from exception
 
         # NOTE: Not checking at role level
-        if Membership.objects.filter(
-            user=user, organization=invite_code.organization
-        ).exists():
+        if Membership.objects.filter(user=user, organization=invite_code.organization).exists():
             return BadRequestError("You are already associated with the organization")
 
         # New membership
@@ -58,6 +54,4 @@ class MembershipService:
         try:
             return Membership.objects.get(id=membership_id)
         except Exception as exception:
-            raise ResourceDoesNotExistsError(
-                "Membership does not exists"
-            ) from exception
+            raise ResourceDoesNotExistsError("Membership does not exists") from exception

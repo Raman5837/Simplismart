@@ -44,17 +44,12 @@ class ResourceAllocation(AbstractModel):
     Stores allocation details for a resource in a cluster.
     """
 
-    cluster = models.ForeignKey(
-        Cluster, on_delete=models.CASCADE, related_name="resource_allocations"
-    )
-    deployment = models.OneToOneField(
-        "Deployment", on_delete=models.CASCADE, related_name="resource_allocation"
-    )
+    cluster = models.ForeignKey(Cluster, on_delete=models.CASCADE, related_name="resource_allocations")
+    deployment = models.OneToOneField("Deployment", on_delete=models.CASCADE, related_name="resource_allocation")
 
     cpu_allocated = models.PositiveIntegerField()
     ram_allocated = models.PositiveIntegerField()
     gpu_allocated = models.PositiveIntegerField()
-    allocated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return f"<ResourceAllocation> {self.id}"

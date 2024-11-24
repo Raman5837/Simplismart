@@ -38,9 +38,7 @@ class InviteCode(AbstractModel):
 
     is_active = models.BooleanField(default=True)
     code = models.UUIDField(default=uuid4, editable=False, unique=True)
-    organization = models.ForeignKey(
-        Organization, on_delete=models.CASCADE, related_name="invite_codes"
-    )
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name="invite_codes")
 
     def __str__(self) -> str:
         return f"<InviteCode> {self.code}"

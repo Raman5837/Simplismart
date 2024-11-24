@@ -14,9 +14,7 @@ def consume_enqueued_deployments() -> None:
 
     logger.info(f"[Task]: Process InQueued Deployment Task Started at {datetime.now()}")
     Scheduler().schedule_deployment()
-    logger.info(
-        f"[Task]: Process InQueued Deployment Task Completed at {datetime.now()}"
-    )
+    logger.info(f"[Task]: Process InQueued Deployment Task Completed at {datetime.now()}")
 
 
 @shared_task

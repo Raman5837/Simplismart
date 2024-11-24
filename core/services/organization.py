@@ -39,6 +39,4 @@ class OrganizationService:
         try:
             return Organization.objects.get(id=organization_id)
         except Exception as exception:
-            raise ResourceDoesNotExistsError(
-                "Organization does not exists"
-            ) from exception
+            raise ResourceDoesNotExistsError("Organization does not exists") from exception

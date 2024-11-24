@@ -10,7 +10,3 @@ CELERY_BEAT_SCHEDULE_CONFIG: Dict[str, Dict] = {
         "schedule": 120.0,  # Runs every 2 minutes
     },
 }
-
-
-# python -m celery -A hypervisor beat --loglevel=info
-# python -m celery -A hypervisor worker --loglevel=info

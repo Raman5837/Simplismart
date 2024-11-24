@@ -18,9 +18,7 @@ class OrganizationSerializer(serializers.ModelSerializer):
         Assumes there is at least one active invite code for the organization.
         """
 
-        invite_code = InviteCode.objects.filter(
-            organization=instance, is_active=True
-        ).first()
+        invite_code = InviteCode.objects.filter(organization=instance, is_active=True).first()
 
         return str(invite_code.code) if invite_code else None
 

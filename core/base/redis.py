@@ -32,6 +32,7 @@ class RedisClient:
         """
         Returns the Redis connection instance.
         """
+
         return self.connection
 
     def z_add(self, key: str, mapping: dict) -> int:
